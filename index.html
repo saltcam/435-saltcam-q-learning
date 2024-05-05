@@ -15,6 +15,16 @@
     <script type="text/javascript" src="gameBoard.js"></script>
 </head>
 <body>
-    <canvas id="gameWorld" width="1024/2" height="768/2" style="background: white; border: 1px solid black" tabindex="0" autofocus></canvas>
+    <canvas id="gameWorld" width="575" height="638" style="background: white; border: 1px solid black" tabindex="0" autofocus></canvas>
+        <div>
+            <div id="ticks">Ticks: 0</div>
+            <label for="speed">Fast</label>
+            <input type="range" id="speed" min="1" max="150" value="50" step="1">
+            <label for="speed">Slow</label>
+        </div>
+        <div class="wrapper" id="agent">
+            <input type="text" id="epsilon" value="0.9" /> Epsilon<br />
+            <input type="text" id="epsilon_decay" value="100" /> Epsilon Decay<br />
+        </div><br />
 </body>
 </html>

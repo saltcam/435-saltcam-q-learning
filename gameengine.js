@@ -14,6 +14,8 @@ class GameEngine {
         this.mouse = null;
         this.wheel = null;
         this.keys = {};
+        this.ticks = 0;
+        this.tickCount = 0;
 
         // Options and the Details
         this.options = options || {
@@ -34,7 +36,8 @@ class GameEngine {
 
         this.gameBoard = new GameBoard(this);
 
-        // this.addEntity(new agent(this, 0, 0, 0));
+        this.addEntity(new agent(this, 0, 1, 9));   // green link
+        this.addEntity(new agent(this, 1, 7, 8));   // blue link
     }
 
     start() {
@@ -103,19 +106,29 @@ class GameEngine {
     }
 
     update() {
-        let entitiesCount = this.entities.length;
 
-        for (let i = 0; i < entitiesCount; i++) {
-            let entity = this.entities[i];
+        let speed = parseInt(document.getElementById('speed').value, 10);
 
-            if (!entity.removeFromWorld) {
-                entity.update();
+        if (this.tickCount++ >= speed && speed !== 150) {
+            this.tickCount = 0;
+            this.ticks++;
+            document.getElementById('ticks').innerHTML = "Ticks: " + this.ticks;
+
+
+            let entitiesCount = this.entities.length;
+
+            for (let i = 0; i < entitiesCount; i++) {
+                let entity = this.entities[i];
+
+                if (!entity.removeFromWorld) {
+                    entity.update();
+                }
             }
-        }
 
-        for (let i = this.entities.length - 1; i >= 0; --i) {
-            if (this.entities[i].removeFromWorld) {
-                this.entities.splice(i, 1);
+            for (let i = this.entities.length - 1; i >= 0; --i) {
+                if (this.entities[i].removeFromWorld) {
+                    this.entities.splice(i, 1);
+                }
             }
         }
     }
