@@ -56,6 +56,7 @@ class GameBoard {
         this.board[3][0] = 4;
         this.board[8][4] = 4;
         this.board[0][3] = 4;
+        this.board[4][0] = 4;
     }
 
     attemptMove(color, currX, currY, dx, dy) {

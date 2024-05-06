@@ -37,7 +37,7 @@ class GameEngine {
         this.gameBoard = new GameBoard(this);
 
         this.addEntity(new agent(this, 0, 1, 9));   // green link
-        // this.addEntity(new agent(this, 1, 7, 8));   // blue link
+        this.addEntity(new agent(this, 1, 7, 8));   // blue link
     }
 
     start() {

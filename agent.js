@@ -1,7 +1,7 @@
 class agent {
 
     // Color: Green = 0; Blue = 1;
-    constructor(game, color, x, y, boardCols, boardRows) {
+    constructor(game, color, x, y) {
         this.game = game;
         this.color = color;
         this.x = x;
@@ -98,7 +98,11 @@ class agent {
         this.x = newCoords.x;
         this.y = newCoords.y;
 
-
+        let colors = ["greenReward", "blueReward"];
+        document.getElementById(colors[this.color]).textContent=colors[this.color] + ": " + this.reward;
+        // console.log(this.reward);
+        // document.getElementById(colors[this.color]).innerHTML=colors[this.color] + " Reward: " + this.reward;
+        // console.log(colors[this.color] + " Reward: " + this.reward);
     }
 
     draw(ctx) {
@@ -113,17 +117,23 @@ class agent {
         image.src = "./assets/" + imgColor + ".png";
         ctx.drawImage(image, 0, 0, 64, 64, this.x*64, this.y*64, 128, 128);
 
-        for (let i = 0; i < boardWidth; i++) {
-            for (let j = 0; j < boardHeight; j++) {
+        document.getElementById("Green").checked;
 
-            ctx.font = "16px serif";
-            ctx.fillText(Math.round(this.board[i][j].NESW[0]).toString(), i*64+32, (j+1)*64-48);
-            ctx.fillText(Math.round(this.board[i][j].NESW[1]).toString(), i*64+48, (j+1)*64-32);
-            ctx.fillText(Math.round(this.board[i][j].NESW[2]).toString(), i*64+32, (j+1)*64-8);
-            ctx.fillText(Math.round(this.board[i][j].NESW[3]).toString(), i*64, (j+1)*64-32);
+        if((document.getElementById("Green").checked && this.color === 0) ||
+            (document.getElementById("Blue").checked && this.color === 1)) {
+            for (let i = 0; i < boardWidth; i++) {
+                for (let j = 0; j < boardHeight; j++) {
 
+                    ctx.font = "16px serif";
+                    ctx.fillText(Math.round(this.board[i][j].NESW[0]).toString(), i*64+32, (j+1)*64-48);
+                    ctx.fillText(Math.round(this.board[i][j].NESW[1]).toString(), i*64+48, (j+1)*64-32);
+                    ctx.fillText(Math.round(this.board[i][j].NESW[2]).toString(), i*64+32, (j+1)*64-8);
+                    ctx.fillText(Math.round(this.board[i][j].NESW[3]).toString(), i*64, (j+1)*64-32);
+
+                }
             }
         }
+
     }
 
 
