@@ -58,7 +58,7 @@ class GameBoard {
         this.board[0][3] = 4;
     }
 
-    attemptMove(color, currX, currY, dx, dy, spawnX, spawnY) {
+    attemptMove(color, currX, currY, dx, dy) {
 
         // check if we are on bomb or goal first
 
@@ -75,7 +75,24 @@ class GameBoard {
         } else {
             newY = currY + dy;
         }
+
+        // reward handling for tile types here!
         let reward = -5;
+        let tile = this.board[newX][newY];
+        // 0 = green (-50 if blue)
+        // 1 = blue (-50 if green)
+        // 2 = empty
+        // 3 = bomb (-100)
+        // 4 = Goal/Zelda (+100)
+        if((tile === 0 || tile === 1) && color !== tile) {
+            reward = -100;
+        } else if(tile === 2 || color === tile) {
+            reward = -5;
+        } else if(tile === 3) {
+            reward = -100;
+        } else {
+            reward = 100;
+        }
 
         return {x: newX, y: newY, pts: reward} // change in points
     }

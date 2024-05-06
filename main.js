@@ -8,6 +8,7 @@ ASSET_MANAGER.downloadAll(() => {
 
 	ASSET_MANAGER.queueDownload("./assets/Link_Green.png");
 	ASSET_MANAGER.queueDownload("./assets/Link_Blue.png");
+	ASSET_MANAGER.queueDownload("./assets/Link_Both.png");
 	ASSET_MANAGER.queueDownload("./assets/Zelda.png");
 	ASSET_MANAGER.queueDownload("./assets/Empty.png");
 	ASSET_MANAGER.queueDownload("./assets/Green.png");
